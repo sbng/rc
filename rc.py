@@ -18,7 +18,7 @@ else:
 def main():
     #sys.stdout = open(filename+'.diff', 'w')
     ospf_exp = re.compile('O .. .+?(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}\/\d\d)')
-    bgp_exp = re.compile('[\>|r|\*|i].+? (\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}\/\d\d)')
+    bgp_exp = re.compile('[s|\>|r|\*|i].+?(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}\/\d{1,2})')
     # this RE match those prefixes without "/nn"
     # IOS do not append "/" for default mask eg /32 in 
     # 192.89.222.0/24 in BGP will appears as 192.89.222.0
@@ -40,7 +40,7 @@ def main():
     for x in ospf_present: 
         # Only print the missing OSPF if the input is false
         if (ospf_present[x] == False):
-            print x,":",ospf_present[x]
+            print x,": Missing in BGP"
 
 if __name__ == '__main__':
   main()
