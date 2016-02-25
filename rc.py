@@ -29,8 +29,10 @@ def main():
 
     # Build a BGP table (Tree)
     bgp_rib = SubnetTree.SubnetTree()
-    for x in bgp: bgp_rib.insert(x) 
-    for x in bgp_null : bgp_rib.insert(x) 
+    for x in bgp: 
+        if x != "0.0.0.0/0": bgp_rib.insert(x) 
+    for x in bgp_null : 
+        if x != "0.0.0.0/0": bgp_rib.insert(x) 
   
     # Check all OSPF prefixes to see if it's in BGP rib
     # Test the prefix and isert the result into the 
